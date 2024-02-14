@@ -5,6 +5,7 @@ import { useState } from "react";
 import { ThemeToggle } from "./ThemeToggle";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { verifyCourseShape } from "@/app/timetable/verifyCourseShape";
 
 interface Route {
   href: string;
@@ -21,9 +22,36 @@ const Navbar = () => {
 
   const pathname = usePathname();
 
+  function getCoursesFromLocalStorage() {
+    if (typeof localStorage === "undefined") {
+      return [];
+    }
+    const courses = localStorage.getItem("courses");
+    if (courses) {
+      try {
+        const parsedCourses = JSON.parse(courses);
+        if (
+          Array.isArray(parsedCourses) &&
+          parsedCourses.every(verifyCourseShape)
+        ) {
+          return parsedCourses;
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    return [];
+  }
+
+  const courses = getCoursesFromLocalStorage();
+
   const routes: Route[] = [
     { href: "/", label: "Home" },
-
+    {
+      href: `/timetable?courses=${JSON.stringify(courses)}`,
+      label: "Timetable",
+      hidden: courses.length === 0,
+    },
 
     { href: "/contact", label: "Contact" },
     { href: "/about", label: "About" },
@@ -45,13 +73,13 @@ const Navbar = () => {
         >
           <Image
             height={35}
-            className="mt-1"
-            src="/calendify-min.png"
-            alt="Calendify"
+            className="mt-1 rounded-md"
+            src="/logo.jpg"
+            alt="Cute Timetable"
             width={35}
           />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            Calendify
+            Cute Timetable
           </span>
         </Link>
         <div className="flex items-center space-x-4">
@@ -99,11 +127,13 @@ const Navbar = () => {
                 <Link
                   href={route.href}
                   className={`block py-2 lg:py-1 px-2 text-gray-900 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:dark:text-white lg:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent ${
-                    pathname === route.href
+                    pathname === route.href.split("?")[0]
                       ? "bg-blue-200 dark:lg:bg-blue-600 dark:text-black lg:bg-transparent text-blue-700 !dark:text-white my-2"
                       : ""
                   } ${route?.hidden ? "!hidden" : ""}`}
-                  aria-current={route.href === pathname ? "page" : undefined}
+                  aria-current={
+                    route.href.split("?")[0] === pathname ? "page" : undefined
+                  }
                 >
                   {route.label}
                 </Link>

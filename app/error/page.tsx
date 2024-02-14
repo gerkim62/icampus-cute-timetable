@@ -1,5 +1,3 @@
-
-
 import BackButton from "@/components/BackButton";
 import Link from "next/link";
 import React from "react";
@@ -24,6 +22,8 @@ export default function Page({
 
         <h2 className="text-2xl font-bold mb-4">{message}</h2>
         <p className="text-gray-100">{possible_cause}</p>
+
+        <p>{code === "500" && "Go back and try again untill it works."}</p>
         <BackButton />
       </div>
     </div>

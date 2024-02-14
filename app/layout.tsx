@@ -14,7 +14,7 @@ import InstallationBanner from "@/components/InstallationBanner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Calendify",
+  title: "Cute Timetable",
 
   icons: [
     {

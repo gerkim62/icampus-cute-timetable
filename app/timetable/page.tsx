@@ -8,39 +8,8 @@ import { Course } from "@/types";
 import Loading from "@/components/Loading";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa6";
-
-function verifyCourseShape(course: Course) {
-  // Define the expected shape
-  const expectedShape = {
-    "SR. No": "string",
-    "Course Code": "string",
-    "Course Title": "string",
-    Credit: "string", // You can change this to "number" if Credit should be a number
-    Lecturer: "string",
-    Room: "string",
-    Days: "object", //this should be an array of strings
-    Start: "string", // You can change this to "number" if Start should be a number
-    End: "string", // You can change this to "number" if End should be a number
-  };
-
-  // Check if all keys in expectedShape are present in obj
-  for (let key in expectedShape) {
-    if (!(key in course)) {
-      return false;
-    }
-  }
-
-  // Check if the types of values match the expected types
-  for (let key in expectedShape) {
-    // @ts-ignore
-    if (typeof course[key] !== expectedShape[key]) {
-      return false;
-    }
-  }
-
-  // If all checks pass, return true
-  return true;
-}
+import Popup from "@/components/Popup";
+import { verifyCourseShape } from "./verifyCourseShape";
 
 const Page = () => {
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
@@ -139,6 +108,11 @@ const Page = () => {
         <Loading />
       )}
 
+      <Popup
+        message="Click on the Course Code to view course details."
+        id="courseDetails"
+      />
+
       {selectedCourse && (
         <div
           onClick={() => setSelectedCourse(null)}
@@ -152,7 +126,7 @@ const Page = () => {
 
       <Link
         href="/"
-        className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex justify-center items-center max-w-max mx-auto"
+        className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex justify-center items-center max-w-max mx-auto focus:outline-none focus:shadow-outline leading-wide fixed left-0 right-0"
       >
         <FaArrowLeft className="mr-2" /> Create another timetable
       </Link>

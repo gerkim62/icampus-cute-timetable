@@ -90,7 +90,7 @@ const InstallationBanner: React.FC = () => {
             <span className="sr-only">Offline Access</span>
           </span>
           <span>
-            Enjoy faster, offline access by installing Calendify!{" "}
+            Enjoy faster, offline access by installing Cute Timetable!{" "}
             <button
               onClick={(e) => handleInstallClick()}
               className=" flex items-center ms-0 text-sm font-medium text-blue-600 md:ms-1 md:inline-flex dark:text-blue-500 hover:underline"

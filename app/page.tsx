@@ -11,6 +11,8 @@ export default function Home() {
   // throw "example error message";
   return (
     <div className="max-w-lg w-[95vw] mx-auto p-4 m- overflow-hidden">
+      
+      <OldTimetableAlert />
       <p className="mb-2 text-xl">Enter your username and password.</p>
 
       <p className="text-sm text-gray-500 dark:text-gray-300 mb-4 ">
@@ -55,7 +57,6 @@ export default function Home() {
         </div>
       </form>
 
-      <OldTimetableAlert />
     </div>
   );
 }

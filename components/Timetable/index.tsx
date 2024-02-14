@@ -24,7 +24,9 @@ const Timetable = ({ setSelectedCourse, courses }: Props) => {
     sun: "Sunday",
   };
 
-  const [title, setTitle] = useState("My Timetable");
+  const DOUBLE_CLICK_MESSAGE = "Double click here to edit Title";
+
+  const [title, setTitle] = useState(DOUBLE_CLICK_MESSAGE);
 
   useEffect(() => {
     const oldTitle = localStorage.getItem("title");
@@ -43,7 +45,11 @@ const Timetable = ({ setSelectedCourse, courses }: Props) => {
     <table className="mx-auto sm:rotate-0">
       <caption
         onDoubleClick={() => {
-          const newTitle = prompt("Enter new title")?.trim() || title;
+          const newTitle =
+            prompt(
+              "Enter new title",
+              title === DOUBLE_CLICK_MESSAGE ? "" : title
+            )?.trim() || title;
 
           setTitle(newTitle);
 
@@ -72,7 +78,7 @@ const Timetable = ({ setSelectedCourse, courses }: Props) => {
       <tbody key={"tbody"}>
         {leftHeaders.map((day, index) => (
           <tr key={index}>
-            <th className="day font-mono">{DAYS_MAP[day]}</th>
+            <th className="day">{DAYS_MAP[day]}</th>
             {topHeaders.map((timestamp, idx) => {
               const currentCourses = coursesWithColor.filter(
                 (course) =>
