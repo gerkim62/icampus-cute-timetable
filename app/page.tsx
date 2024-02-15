@@ -1,6 +1,7 @@
 import { submitCredintials } from "@/actions/submitCredintials";
 import OldTimetableAlert from "@/components/OldTimetableAlert";
 import SubmitButton from "@/components/SubmitButton";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent } from "react";
 import { AiOutlineUser, AiOutlineLock } from "react-icons/ai";
@@ -11,7 +12,6 @@ export default function Home() {
   // throw "example error message";
   return (
     <div className="max-w-lg w-[95vw] mx-auto p-4 m- overflow-hidden">
-      
       <OldTimetableAlert />
       <p className="mb-2 text-xl">Enter your username and password.</p>
 
@@ -46,17 +46,17 @@ export default function Home() {
           <SubmitButton />
 
           <p className="text-sm text-gray-500 dark:text-gray-300">
-            <a
-              href="#"
+            <Link
+              target="_blank"
+              href="/privacy"
               className="text-purple-500 dark:text-purple-300 hover:underline ml-4 whitespace-nowrap overflow-hidden"
             >
               Privacy Policy{" "}
-            </a>
+            </Link>
             <FaUpRightFromSquare className="inline-block" />
           </p>
         </div>
       </form>
-
     </div>
   );
 }

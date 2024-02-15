@@ -45,12 +45,14 @@ const Navbar = () => {
 
   const courses = getCoursesFromLocalStorage();
 
+  console.log(`in navbar, courses: ${courses.length}`);
+
   const routes: Route[] = [
     { href: "/", label: "Home" },
     {
       href: `/timetable?courses=${JSON.stringify(courses)}`,
       label: "Timetable",
-      hidden: courses.length === 0,
+      hidden: !courses || courses.length === 0,
     },
 
     { href: "/contact", label: "Contact" },
@@ -79,7 +81,7 @@ const Navbar = () => {
             width={35}
           />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            Cute Timetable
+            <span className="hidden sm:inline">Cute&nbsp;</span>Timetable
           </span>
         </Link>
         <div className="flex items-center space-x-4">

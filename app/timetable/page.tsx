@@ -99,6 +99,14 @@ const Page = () => {
 
   return (
     <div className="p-4 w-[100vw] overflow-auto">
+      <h1 className="text-2xl font-semibold mb-4  !text-center fixed left-0 right-0 ">
+        Your Timetable{" "}
+        <span role="img" aria-label="timetable">
+          📅
+        </span>
+      </h1>
+      {/* placeholder since above is fixed, transparent */}
+      <div className="h-12 opacity-0">j</div>
       {courses.length > 0 ? (
         <div className="flex">
           <Timetable courses={courses} setSelectedCourse={setSelectedCourse} />
@@ -122,14 +130,18 @@ const Page = () => {
         </div>
       )}
 
+      {/* placeholder since button is fixed, transparent */}
+      <div className="h-1 opacity-0">j</div>
       {/* button for discarding and creating another (link) */}
 
-      <Link
-        href="/"
-        className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex justify-center items-center max-w-max mx-auto focus:outline-none focus:shadow-outline leading-wide fixed left-0 right-0"
-      >
-        <FaArrowLeft className="mr-2" /> Create another timetable
-      </Link>
+      {!!courses.length && (
+        <Link
+          href="/"
+          className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex justify-center items-center max-w-max mx-auto focus:outline-none focus:shadow-outline leading-wide fixed left-0 right-0"
+        >
+          <FaArrowLeft className="mr-2" /> Create another timetable
+        </Link>
+      )}
     </div>
   );
 };

@@ -5,7 +5,6 @@ const Loading = () => {
     <div className="flex items-center justify-center h-full">
       <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-100"></div>
       <p className="ml-4">
-        Just a sec...
       </p>
     </div>
   );

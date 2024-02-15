@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -11,7 +11,7 @@ import InstallationBanner from "@/components/InstallationBanner";
 
 // import * as PusherPushNotifications from "@pusher/push-notifications-web";
 
-const inter = Inter({ subsets: ["latin"] });
+const font = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Cute Timetable",
@@ -72,7 +72,7 @@ export default function RootLayout({
   //   .catch(console.error);
   return (
     <html lang="en">
-      <body className={"flex flex-col min-h-screen " + inter.className}>
+      <body className={"flex flex-col min-h-screen " + font.className}>
         <ThemeProvider
           attribute="class"
           // defaultTheme="light"

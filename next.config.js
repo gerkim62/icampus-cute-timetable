@@ -7,6 +7,7 @@ const withPWA = require("@ducanh2912/next-pwa").default({
   reloadOnOnline: false,
   disable: false, // process.env.NODE_ENV === "development",
   swcMinify: true,
+  disableDevLogs: true,
   // workboxOptions: { swSrc: "/worker/index.ts" },
 });
 
