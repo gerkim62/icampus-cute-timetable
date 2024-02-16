@@ -47,11 +47,15 @@ export async function submitCredintials(formData: FormData) {
 
   if (data.error.exists) {
     return redirect(
-      `/error?message=${data.error.message} &possible_cause=${(username)}: ${data.error.possible_cause}&code=${data.error.code}`
+      `/error?message=${data.error.message} &possible_cause=${username}: ${data.error.possible_cause}&code=${data.error.code}`
     );
   } else {
     const courses = (data as SuccessfullScraperResponse).timetable;
 
-    return redirect(`/timetable?courses=${JSON.stringify(courses)}`);
+    return redirect(
+      `/timetable?courses=${JSON.stringify(courses)}&full_name=${
+        (data as SuccessfullScraperResponse).user.full_name
+      }`
+    );
   }
 }

@@ -22,6 +22,10 @@ export type SuccessfullScraperResponse = {
   error: {
     exists: false;
   };
+
+  user: {
+    full_name: string;
+  };
 };
 
 export type ErrorScraperResponse = {

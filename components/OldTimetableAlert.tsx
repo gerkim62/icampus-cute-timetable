@@ -2,7 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { XIcon } from "lucide-react";
 import Link from "next/link";
-import { FaCalendarAlt, FaExclamationCircle, FaRegCalendarAlt } from "react-icons/fa";
+import {
+  FaCalendarAlt,
+  FaExclamationCircle,
+  FaRegCalendarAlt,
+} from "react-icons/fa";
 import Popup from "./Popup";
 
 const OldTimetableAlert = () => {
@@ -23,7 +27,7 @@ const OldTimetableAlert = () => {
     <>
       {showPopup && (
         <Popup
-          viewOnce={false}
+          viewOnce={true}
           message=" You have already downloaded the timetable. Click the
                     `View your existing timetable` button to view it instead
                     of redownloading it if  it has not been
@@ -36,7 +40,7 @@ const OldTimetableAlert = () => {
         href={`/timetable?courses=${localStorage.getItem("courses")}`}
         className="inline-block  text-white font-bold rounded mt-8 animate-bounce focus:shadow-outline leading-wide bg-pink-600 px-4 py-2 hover:bg-pink-700"
       >
-         View your existing timetable
+        View your existing timetable
       </Link>
     </>
   );

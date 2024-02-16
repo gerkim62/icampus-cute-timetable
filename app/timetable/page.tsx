@@ -7,12 +7,13 @@ import Timetable from "@/components/Timetable";
 import { Course } from "@/types";
 import Loading from "@/components/Loading";
 import Link from "next/link";
-import { FaArrowLeft } from "react-icons/fa6";
+import { FaArrowLeft, FaCalendar } from "react-icons/fa6";
 import Popup from "@/components/Popup";
 import { verifyCourseShape } from "./verifyCourseShape";
 
 const Page = () => {
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+  const full_name = useSearchParams().get("full_name");
   const [courses, setCourses] = useState<Course[]>([]);
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -102,14 +103,18 @@ const Page = () => {
       <h1 className="text-2xl font-semibold mb-4  !text-center fixed left-0 right-0 ">
         Your Timetable{" "}
         <span role="img" aria-label="timetable">
-          📅
+          
         </span>
       </h1>
       {/* placeholder since above is fixed, transparent */}
       <div className="h-12 opacity-0">j</div>
       {courses.length > 0 ? (
         <div className="flex">
-          <Timetable courses={courses} setSelectedCourse={setSelectedCourse} />
+          <Timetable
+            courses={courses}
+            setSelectedCourse={setSelectedCourse}
+            fullName={full_name}
+          />
           <div className="">...</div>
         </div>
       ) : (

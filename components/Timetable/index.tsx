@@ -9,9 +9,10 @@ import CourseDetails from "../CourseDetails";
 type Props = {
   setSelectedCourse: React.Dispatch<React.SetStateAction<Course | null>>;
   courses: Course[];
+  fullName: string | null;
 };
 
-const Timetable = ({ setSelectedCourse, courses }: Props) => {
+const Timetable = ({ setSelectedCourse, courses, fullName }: Props) => {
   const coursesWithColor = addColorToCourses(courses);
 
   const DAYS_MAP = {
@@ -26,9 +27,12 @@ const Timetable = ({ setSelectedCourse, courses }: Props) => {
 
   const DOUBLE_CLICK_MESSAGE = "Double click here to edit Title";
 
-  const [title, setTitle] = useState(DOUBLE_CLICK_MESSAGE);
+  const [title, setTitle] = useState(fullName || DOUBLE_CLICK_MESSAGE);
 
   useEffect(() => {
+    if (title !== DOUBLE_CLICK_MESSAGE) {
+      localStorage.setItem("title", title);
+    }
     const oldTitle = localStorage.getItem("title");
     if (oldTitle) {
       setTitle(oldTitle);
@@ -44,6 +48,7 @@ const Timetable = ({ setSelectedCourse, courses }: Props) => {
   return (
     <table className="mx-auto sm:rotate-0">
       <caption
+        className="capitalize"
         onDoubleClick={() => {
           const newTitle =
             prompt(
@@ -114,7 +119,7 @@ const Timetable = ({ setSelectedCourse, courses }: Props) => {
       <tfoot>
         <tr>
           <td colSpan={topHeaders.length + 1}>
-            <p>❤️Made by developer.gerison ❤️</p>
+            <p>❤️ Made by developer.gerison ❤️</p>
           </td>
         </tr>
       </tfoot>
