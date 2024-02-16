@@ -23,7 +23,16 @@ export default function Page({
         <h2 className="text-2xl font-bold mb-4">{message}</h2>
         <p className="text-gray-100">{possible_cause}</p>
 
-        <p>{code === "500" && "Go back and try again untill it works."}</p>
+        <p>
+          {code === "500" && "Go back and try again."}{" "}
+          <Link
+            href={`https://wa.me/254715870654?text=Cute timetable says ${message} (${code}). Please help me.`}
+            className="inline-block px-2 py-1 bg-pink-200 text-pink-800 font-semibold rounded-full shadow-md hover:bg-pink-300 hover:text-pink-900"
+          >
+            WhatsApp developer.gerison on +254715870654
+          </Link>
+        </p>
+
         <BackButton />
       </div>
     </div>
