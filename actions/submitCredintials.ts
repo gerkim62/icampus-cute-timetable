@@ -53,9 +53,11 @@ export async function submitCredintials(formData: FormData) {
     const courses = (data as SuccessfullScraperResponse).timetable;
 
     return redirect(
-      `/timetable?courses=${JSON.stringify(courses)}&full_name=${
+      `/timetable?courses=${encodeURIComponent(
+        JSON.stringify(courses)
+      )}&full_name=${encodeURIComponent(
         (data as SuccessfullScraperResponse).user.full_name
-      }`
+      )}`
     );
   }
 }
